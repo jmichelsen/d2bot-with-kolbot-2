@@ -79,6 +79,8 @@ function LoadConfig() {
 	Scripts.OuterSteppes = false;
 	Scripts.Izual = false;
 	Scripts.Hephasto = false;
+		Config.Hephasto.ClearRiver = false;
+		Config.Hephasto.ClearType = false; // Special ClearType for river. If `false`, Config.ClearType is used. 0xF = skip normal, 0x7 = champions/bosses, 0 = all
 	Scripts.Vizier = false; // Intended for classic sorc, kills Vizier only.
 	Scripts.FastDiablo = false;
 	Scripts.Diablo = false;

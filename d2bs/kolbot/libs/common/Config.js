@@ -399,6 +399,10 @@ var Config = {
 	Corpsefire: {
 		ClearDen: false
 	},
+	Hephasto: {
+		ClearRiver: false,
+		ClearType: false,
+	},
 	Diablo: {
 		Entrance: false,
 		SealWarning: "Leave the seals alone!",

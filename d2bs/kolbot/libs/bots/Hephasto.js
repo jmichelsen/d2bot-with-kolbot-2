@@ -2,6 +2,7 @@
 *	@filename	Hephasto.js
 *	@author		kolton
 *	@desc		kill Hephasto the Armorer
+*	@return		{boolean}
 */
 
 function Hephasto() {
@@ -13,8 +14,16 @@ function Hephasto() {
 		throw new Error("Failed to move to Hephasto");
 	}
 
-	Attack.kill(getLocaleString(1067)); // Hephasto The Armorer
+	try {
+		Attack.kill(getLocaleString(1067)); // Hephasto The Armorer
+	} catch (e) {
+		print("Heph not found. Carry on");
+	}
 	Pickit.pickItems();
+
+	if (Config.Hephasto.ClearRiver) {
+		Attack.clearLevel(Config.ClearType || Config.Hephasto.ClearType);
+	}
 
 	return true;
 }
