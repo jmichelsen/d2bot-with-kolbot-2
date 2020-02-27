@@ -1352,7 +1352,7 @@ var Misc = {
 			break;
 		}
 
-		return this.fileAction("logs/ItemLog.txt", 2, dateString + " <" + me.profile + "> <" + action + "> (" + Pickit.itemQualityToName(unit.quality) + ") " + desc + (text ? " {" + text + "}" : "") + "\n");
+		return this.fileAction("logs/ItemLog.txt", 2, dateString + " <" + me.gamename + "@" + DataFile.getStats().lastArea + "> <" + me.profile + "> <" + action + "> (" + Pickit.itemQualityToName(unit.quality) + ") " + desc + (text ? " {" + text + "}" : "") + "\n");
 	},
 
 	// Log kept item stats in the manager.
