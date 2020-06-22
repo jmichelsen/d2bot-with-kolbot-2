@@ -185,6 +185,7 @@ var Config = {
 	MakeRoom: true,
 	ClearInvOnStart: true,
 	FastPick: false,
+	ManualPlayPick: false,
 	OpenChests: false,
 	PickitFiles: [],
 	BeltColumn: [],
@@ -424,6 +425,10 @@ var Config = {
 	Corpsefire: {
 		ClearDen: false
 	},
+	Hephasto: {
+		ClearRiver: false,
+		ClearType: false
+	},
 	Diablo: {
 		Entrance: false,
 		SealWarning: "Leave the seals alone!",
@@ -446,6 +451,9 @@ var Config = {
 	MFHelper: {
 		BreakClearLevel: true
 	},
+	Wakka: {
+		Wait: 1
+	},
 	BattleOrders: {
 		Mode: 0,
 		Getters: [],
@@ -453,6 +461,10 @@ var Config = {
 		QuitOnFailure: false,
 		SkipIfTardy: true,
 		Wait: 10
+	},
+	BoBarbHelper: {
+		Mode: -1,
+		Wp: 35
 	},
 	Enchant: {
 		Triggers: ["chant", "cows", "wps"],
