@@ -197,12 +197,14 @@ var Config = {
 	Debug: false,
 	DeepStats: {
 		StatsEnabled: false,
+		MuleLoggerEnabled: true,
 		SOJReportsEnabled: false,
 		DCloneReportsEnabled: false,
 		FileLogOnly: false,
 		API: {
 			Token: "", // GheedsFortune.com/accounts/profile for your token
 			ReportItem: "http://d2bs.gheedsfortune.com/api/v1/items/",
+			ReportMule: "http://d2bs.gheedsfortune.com/api/v1/mules/",
 			ReportDClone: "http://d2bs.gheedsfortune.com/api/v1/dclones/",
 			ReportSOJsSold: "http://d2bs.gheedsfortune.com/api/v1/sojs/"
 		}

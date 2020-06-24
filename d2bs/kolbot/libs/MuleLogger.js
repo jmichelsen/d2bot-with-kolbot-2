@@ -367,6 +367,8 @@ var MuleLogger = {
 					parsedItem.title += " (equipped)";
 				}
 
+				parsedItem.quality = items[i].quality;
+
 				string = JSON.stringify(parsedItem);
 				finalString += (string + "\n");
 			}
@@ -389,6 +391,7 @@ var MuleLogger = {
 				for (i = 0; i < items.length; i += 1) {
 					parsedItem = this.logItem(items[i]);
 					parsedItem.title += " (merc)";
+					parsedItem.quality = items[i].quality;
 					string = JSON.stringify(parsedItem);
 					finalString += (string + "\n");
 
@@ -402,6 +405,28 @@ var MuleLogger = {
 		// hcl = hardcore class ladder
 		// sen = softcore expan nonladder
 		FileTools.writeText("mules/" + realm + "/" + me.account + "/" + me.name + "." + ( me.playertype ? "h" : "s" ) + (me.gametype ? "e" : "c" ) + ( me.ladder > 0 ? "l" : "n" ) + ".txt", finalString);
+		if (Config.DeepStats.MuleLoggerEnabled) {
+			let muleData = {
+				items: finalString,
+				char_name: me.name,
+				char_account: me.account,
+				ladder: me.ladder > 0,
+				realm: me.realm,
+				hardcore: me.playertype,
+				expansion: me.gametype === 1,
+			};
+			const HTTP = require("../libs/modules/HTTP");
+			HTTP({
+				url: Config.DeepStats.API.ReportMule,
+				method: "POST",
+				headers: {
+					"Authorization": "Token " + Config.DeepStats.API.Token,
+					"Content-Type": "application/json",
+					"Connection": "close"
+				},
+				data: JSON.stringify(muleData)
+			});
+		}
 		print("Item logging done.");
 	}
 };
