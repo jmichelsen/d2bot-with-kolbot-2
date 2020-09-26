@@ -103,9 +103,9 @@ Unit.prototype.openMenu = function (addDelay) {
 		}
 
 		sendPacket(1, 0x2f, 4, 1, 4, this.gid);
-		delay(me.ping * 2);
+		delay(me.ping * 2 + 1);
 		sendPacket(1, 0x30, 4, 1, 4, this.gid);
-		delay(me.ping * 2);
+		delay(me.ping * 2 + 1);
 		Packet.flash(me.gid);
 	}
 
@@ -1126,7 +1126,7 @@ Unit.prototype.castChargedSkill = function (...args) {
 	// Charged skills can only be casted on x, y coordinates
 	unit && ([x, y] = [unit.x, unit.y]);
 
-	if (this !== me && this.type === 4) {
+	if (this !== me && this.type !== 4) {
 		throw Error("invalid arguments, expected 'me' object or 'item' unit");
 	}
 
@@ -1142,7 +1142,7 @@ Unit.prototype.castChargedSkill = function (...args) {
 			.forEach(function (item) {
 				let stats = item.getStat(-2);
 
-				if (!stats.hasOwnProperty(204)) {
+				if (stats.hasOwnProperty(204)) {
 					stats = stats[204].filter(validCharge);
 					stats.length && chargedItems.push({
 						charge: stats.first(),
@@ -1229,7 +1229,7 @@ Unit.prototype.equip = function (destLocation = undefined) {
 	}
 
 	// If destLocation isnt an array, make it one
-	if (Array.isArray(destLocation)) {
+	if (!Array.isArray(destLocation)) {
 		destLocation = [destLocation]
 	}
 
@@ -1278,7 +1278,7 @@ Unit.prototype.equip = function (destLocation = undefined) {
 
 			print('Unequip item first ' + item.name);
 			// Incase multiple items are equipped
-			spot = findspot(item); // Find a spot for the current item
+			let spot = findspot(item); // Find a spot for the current item
 
 			if (!spot) {
 				throw Error('cant find spot for unequipped item');
